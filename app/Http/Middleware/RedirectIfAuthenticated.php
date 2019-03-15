@@ -23,6 +23,15 @@ class RedirectIfAuthenticated
                 if (Auth::guard($guard)->check())
                     return redirect()->route('admin.dashboard');
                 break;
+            case 'seller':
+                if (Auth::guard($guard)->check())
+                    return redirect()->route('seller.dashboard');
+                break;
+
+            case 'shipper':
+                if (Auth::guard($guard)->check())
+                    return redirect()->route('shipper.dashboard');
+                break;
             default:
                 if (Auth::guard($guard)->check())
                     return redirect()->route('home');
