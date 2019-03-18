@@ -4,39 +4,38 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Admin\ShopCategoryModel;
+use App\Model\Admin\ContentCategoryModel;
 use Illuminate\Support\Facades\DB;
 
-class ShopCategoryController extends Controller
+class ContentCategoryController extends Controller
 {
     //
     public function index(){
 
-    	//$items = ShopCategoryModel::all();
-    	$items = DB::table('shop_category')->paginate(5);
+    	//$items = ContentCategoryModel::all();
+    	$items = DB::table('content_category')->paginate(5);
     	$data = array();
     	$data['item'] = $items;
-		return view('admin.content.shop.category.index', $data);
+		return view('admin.content.content.category.index', $data);
     }
 
     public function create(){
     	$data = array();
-		return view('admin.content.shop.category.submit', $data);
+		return view('admin.content.content.category.submit', $data);
     }
 
     public function edit($id){
-    	$items = ShopCategoryModel::find($id);
-
+    	$items = ContentCategoryModel::find($id);
     	$data = array();
     	$data['item'] = $items;
-		return view('admin.content.shop.category.edit', $data);
+		return view('admin.content.content.category.edit', $data);
     }
 
     public function delete($id){
     	$data = array();
-    	$items = ShopCategoryModel::find($id);
+    	$items = ContentCategoryModel::find($id);
     	$data['item'] = $items;
-		return view('admin.content.shop.category.delete', $data);
+		return view('admin.content.content.category.delete', $data);
     }
 
     public function store(Request $request){
@@ -50,7 +49,7 @@ class ShopCategoryController extends Controller
 
     	$input = $request->all();
 
-    	$item = new ShopCategoryModel();
+    	$item = new ContentCategoryModel();
 
     	$item->name = $input['name'];
     	$item->slug = $input['slug'];
@@ -60,7 +59,7 @@ class ShopCategoryController extends Controller
 
     	$item->save();
 
-    	return redirect('/admin/shop/category');
+    	return redirect('/admin/content/category');
     }
 
     public function update(Request $request, $id){
@@ -74,7 +73,7 @@ class ShopCategoryController extends Controller
          
     	$input = $request->all();
 
-    	$item = ShopCategoryModel::find($id);
+    	$item = ContentCategoryModel::find($id);
 
     	$item->name = $input['name'];
     	$item->slug = $input['slug'];
@@ -84,12 +83,12 @@ class ShopCategoryController extends Controller
 
     	$item->save();
 
-    	return redirect('/admin/shop/category');
+    	return redirect('/admin/content/category');
     }
 
     public function destroy($id){
-    	$item = ShopCategoryModel::find($id);
+    	$item = ContentCategoryModel::find($id);
     	$item->delete();
-    	return redirect('/admin/shop/category');
+    	return redirect('/admin/content/category');
     }
 }

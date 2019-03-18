@@ -35,6 +35,10 @@ Route::prefix('admin')->group(function (){
 
 	Route::post('logout', 'Auth\Admin\LoginController@logout')->name('admin.auth.logout');
 
+	/**
+	 * Category
+	 */
+
 	Route::get('shop/category', 'Admin\ShopCategoryController@index');
 	Route::get('shop/category/create', 'Admin\ShopCategoryController@create');
 	Route::get('shop/category/{id}/edit', 'Admin\ShopCategoryController@edit');
@@ -44,14 +48,19 @@ Route::prefix('admin')->group(function (){
 	Route::post('shop/category/{id}', 'Admin\ShopCategoryController@update');
 	Route::post('shop/category/{id}/destroy', 'Admin\ShopCategoryController@destroy');
 
+	/**
+	 * Product
+	 */
+	Route::get('shop/product', 'Admin\ShopProductController@index');
+	Route::get('shop/product/create', 'Admin\ShopProductController@create');
+	Route::get('shop/product/{id}/edit', 'Admin\ShopProductController@edit');
+	Route::get('shop/product/{id}/delete', 'Admin\ShopProductController@delete');
+
+	Route::post('shop/product', 'Admin\ShopProductController@store');
+	Route::post('shop/product/{id}', 'Admin\ShopProductController@update');
+	Route::post('shop/product/{id}/destroy', 'Admin\ShopProductController@destroy');
 
 
-
-
-
-	Route::get('shop/product', function(){
-		return view('admin.content.shop.product.index');
-	});
 
 	Route::get('shop/order', function(){
 		return view('admin.content.shop.order.index');
@@ -82,14 +91,38 @@ Route::prefix('admin')->group(function (){
 	/**
 	 * ==============Admin nội dung=============
 	 */
-	
-	Route::get('content/category', function(){
-		return view('admin.content.content.category.index');
-	});
+	/**
+	 * Category
+	 */
 
-	Route::get('content/post', function(){
-		return view('admin.content.content.post.index');
-	});
+	Route::get('content/category', 'Admin\ContentCategoryController@index');
+	Route::get('content/category/create', 'Admin\ContentCategoryController@create');
+	Route::get('content/category/{id}/edit', 'Admin\ContentCategoryController@edit');
+	Route::get('content/category/{id}/delete', 'Admin\ContentCategoryController@delete');
+
+	Route::post('content/category', 'Admin\ContentCategoryController@store');
+	Route::post('content/category/{id}', 'Admin\ContentCategoryController@update');
+	Route::post('content/category/{id}/destroy', 'Admin\ContentCategoryController@destroy');
+
+
+	/**
+	 * Post
+	 */
+	Route::get('content/post', 'Admin\ContentPostController@index');
+	Route::get('content/post/create', 'Admin\ContentPostController@create');
+	Route::get('content/post/{id}/edit', 'Admin\ContentPostController@edit');
+	Route::get('content/post/{id}/delete', 'Admin\ContentPostController@delete');
+
+	Route::post('content/post', 'Admin\ContentPostController@store');
+	Route::post('content/post/{id}', 'Admin\ContentPostController@update');
+	Route::post('content/post/{id}/destroy', 'Admin\ContentPostController@destroy');
+
+
+
+
+
+
+
 
 	Route::get('content/page', function(){
 		return view('admin.content.content.page.index');
